@@ -22,7 +22,6 @@ const dispatch = useDispatch();
 
 useEffect(()=>{
  dispatch(fetchproduit())
-
     },[dispatch])
 
     useEffect(()=>{

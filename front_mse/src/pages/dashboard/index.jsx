@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react'
 import {
   Box,
   Button,
@@ -16,15 +17,20 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import TrafficIcon from "@mui/icons-material/Traffic";
 import Header from "../../components/Header";
 import LineChart from "../../components/LineChart";
+import PieChart from "../../components/PieChart";
+
 import GeographyChart from "../../components/GeographyChart";
 import BarChart from "../../components/BarChart";
 import StatBox from "../../components/StatBox";
 import ProgressCircle from "../../components/ProgressCircle";
+import { useSelector } from 'react-redux';
+import { fetchStatistics } from '../../redux/userSlice';
 
 const Dashboard = () => {
   const theme = useTheme();
   const smScreen = useMediaQuery(theme.breakpoints.up("sm"));
   const colors = tokens(theme.palette.mode);
+
   return (
     <Box m="20px">
       {/* HEADER */}
@@ -65,8 +71,8 @@ const Dashboard = () => {
             justifyContent="center"
           >
             {localStorage.getItem("role")=="admin" && <StatBox
-              title="12,361"
-              subtitle="Emails Sent"
+              title="4"
+              subtitle="Nombre Technicien"
               progress="0.75"
               increase="+14%"
               icon={
@@ -86,8 +92,8 @@ const Dashboard = () => {
             justifyContent="center"
           >
             <StatBox
-              title="431,225"
-              subtitle="Sales Obtained"
+              title="5"
+              subtitle="Nombre de Superviseur"
               progress="0.50"
               increase="+21%"
               icon={
@@ -107,8 +113,8 @@ const Dashboard = () => {
             justifyContent="center"
           >
             <StatBox
-              title="32,441"
-              subtitle="New Clients"
+              title="11"
+              subtitle="Nombre de clients"
               progress="0.30"
               increase="+5%"
               icon={
@@ -128,8 +134,8 @@ const Dashboard = () => {
             justifyContent="center"
           >
             <StatBox
-              title="1,325,134"
-              subtitle="Traffic Received"
+              title="52"
+              subtitle="Projets finis ce mois"
               progress="0.80"
               increase="+43%"
               icon={
@@ -172,7 +178,7 @@ const Dashboard = () => {
                     fontWeight="600"
                     color={colors.greenAccent[500]}
                   >
-                    $58,373,698
+                    TND 58,373,698
                   </Typography>
                 </Box>
                 <Box>
@@ -186,120 +192,12 @@ const Dashboard = () => {
               <Box height="250px" m="-20px 0 0 0">
                 <LineChart isDashboard={true} />
               </Box>
-            </Box>
-          </Grid>
-          <Grid xs={12} sm={12} md={6}>
-            <Box backgroundColor={colors.primary[400]} p="30px">
-              <Typography variant="h5" fontWeight="600">
-                Campaign
-              </Typography>
-              <Box
-                display="flex"
-                flexDirection="column"
-                alignItems="center"
-                mt="25px"
-              >
-                <ProgressCircle size="125" />
-                <Typography
-                  variant="h5"
-                  color={colors.greenAccent[500]}
-                  sx={{ mt: "15px" }}
-                >
-                  $48,352 revenue generated
-                </Typography>
-                <Typography>
-                  Includes extra misc expenditures and costs
-                </Typography>
+              <Box height="250px" m="-20px 0 0 0">
+                <PieChart isDashboard={true} />
               </Box>
             </Box>
-          </Grid>
-          <Grid xs={12} sm={12} md={6}>
-            <Box backgroundColor={colors.primary[400]}>
-              <Typography
-                variant="h5"
-                fontWeight="600"
-                sx={{ padding: "30px 30px 0 30px" }}
-              >
-                Sales Quantity
-              </Typography>
-              <Box height="250px" mt="-20px">
-                <BarChart isDashboard={true} />
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={12}>
-            <Box backgroundColor={colors.primary[400]} padding="30px">
-              <Typography
-                variant="h5"
-                fontWeight="600"
-                sx={{ marginBottom: "15px" }}
-              >
-                Geography Based Traffic
-              </Typography>
-              <Box height="200px">
-                <GeographyChart isDashboard={true} />
-              </Box>
-            </Box>
-          </Grid>
-        </Grid>
-        <Grid xs={12} sm={12} md={4} lg={4} xl={4}>
-          <Box
-            backgroundColor={colors.primary[400]}
-            maxHeight="100vh"
-            overflow="auto"
-            m="25px 0 0 0"
-          >
-            <Box
-              display="flex"
-              justifyContent="space-between"
-              alignItems="center"
-              borderBottom={`4px solid ${colors.primary[500]}`}
-              color={colors.grey[100]}
-              p="15px"
-            >
-              <Typography
-                variant="h5"
-                fontWeight="600"
-                color={colors.grey[100]}
-              >
-                Resent Transaction
-              </Typography>
-            </Box>
-            {mockTransactions.map((transaction, i) => {
-              return (
-                <Box
-                  key={`${transaction}-${i}`}
-                  display="flex"
-                  justifyContent="space-between"
-                  alignItems="center"
-                  borderBottom={`4px solid ${colors.primary[500]}`}
-                  p="15px"
-                >
-                  <Box>
-                    <Typography
-                      variant="h5"
-                      fontWeight="600"
-                      color={colors.greenAccent[100]}
-                    >
-                      {transaction.txId}
-                    </Typography>
-                    <Typography color={colors.grey[100]}>
-                      {transaction.user}
-                    </Typography>
-                  </Box>
-                  <Box color={colors.grey[100]}>{transaction.date}</Box>
-                  <Box
-                    color={colors.greenAccent[500]}
-                    p="5px 10px"
-                    borderRadius="4px"
-                  >
-                    ${transaction.cost}
-                  </Box>
-                </Box>
-              );
-            })}
-          </Box>
-        </Grid>
+          </Grid>    
+        </Grid>   
       </Grid>
     </Box>
   );

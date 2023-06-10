@@ -18,7 +18,8 @@ const {getusers,
         resizeImage,
         uploadUserImage,
         getusersByProject,
-        getTechniciens
+        getTechniciens,
+        dashboardUserStatistics
     }=require('../services/userService');
 
 
@@ -30,6 +31,9 @@ router.route('/').get(getusers)
                  .put(forgetuserpasswordvalidate,passwordrecovery);
 router.route('/project/:id').get(getusersByProject)
 router.route('/techniciens/:id').get(getTechniciens)
+
+router.route('/statistics').get(dashboardUserStatistics)
+
 
 
 router.route('/:id').get(getuser)

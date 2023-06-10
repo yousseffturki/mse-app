@@ -15,6 +15,20 @@ export const fetchusers = createAsyncThunk(
       }
     }
   )
+  export const fetchStatistics = createAsyncThunk(
+    'users/fetchusers',
+    async (_,thunkAPI) => {
+      const {rejectWithValue} = thunkAPI;
+        try{
+          const res =await fetch(`${process.env.REACT_APP_BASE_URL}/api/users/statistics`)
+      const data = await res.json()
+      console.log(data)
+      return data.data}
+      catch(error){
+        return rejectWithValue(error.message);
+      }
+    }
+  )
   export const insertusers = createAsyncThunk(
    'users/insertusers',
    async (usersData,thunkAPI) => {

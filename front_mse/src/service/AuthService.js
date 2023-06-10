@@ -43,6 +43,13 @@ const login = (email, password) => {
     })
   }
 
+  const getStatistics = () => {
+    return axios.get("http://localhost:8000/api/users/statistics")
+    .then((response) => {
+      return response.data;
+    })
+  }
+
   const findClient = () => {
     return axios
       .get(API_URL + "client")
@@ -83,7 +90,8 @@ const login = (email, password) => {
     findSuperviseur,
     findAdmin,
     deleteUser,
-    findProduits
+    findProduits,
+    getStatistics
     
     
   };

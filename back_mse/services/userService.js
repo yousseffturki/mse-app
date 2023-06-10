@@ -1,4 +1,6 @@
 const usermodel=require('../models/userModel')
+const projetModel=require('../models/projetModel')
+
 const asyncHandler = require('express-async-handler')
 const ApiError=require('../utils/apiError')
 const bcrypt=require('bcryptjs');
@@ -127,4 +129,22 @@ exports.passwordrecovery=asyncHandler(async(req,res)=>{
         return   next(new ApiError(`users not found for this email ${req.body.email}`,404)); 
       }
     res.status(200).json({data: users});  
+})
+
+
+exports.dashboardUserStatistics = asyncHandler(async(req,res)=>{
+   const technicien = await usermodel.find({"role":"technicien"}).count();
+   const superviseur = await usermodel.find({"role":"superviseur"}).count();
+   const client = await usermodel.find({"role":"client"}).count();
+   const projet = await projetModel.find({"status":"fini"}).count();
+
+
+   const json = {
+    "technicien": technicien,
+    "superviseur": superviseur,
+    "client":client,
+    "projet":projet
+   }
+   return res.status(200).json(json);
+
 })
