@@ -45,8 +45,8 @@ const FormFournisseur = () => {
   return (
     <Box m="20px">
       <Header
-        title="CREATE Fournisseur"
-        subtitle="Create a New Fournisseur Profile"
+        title="CREATE PROVIDER"
+        subtitle="Create a New Provider's Profile"
       />
 
       <Formik
@@ -75,7 +75,7 @@ const FormFournisseur = () => {
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Nom fournisseur"
+                label="Provider Name"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.nom_fournisseur}
@@ -88,7 +88,7 @@ const FormFournisseur = () => {
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Adresse"
+                label="Address"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.adresse}
@@ -126,7 +126,7 @@ const FormFournisseur = () => {
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
               <Button type="submit" color="secondary" variant="contained">
-                Create New Fournisseur
+                Create New Provider
               </Button>
             </Box>
           </form>

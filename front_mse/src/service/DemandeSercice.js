@@ -1,32 +1,32 @@
 import http from "../http-commons";
 
 const getAll = () => {
-  return http.get("/demande");
+  return http.get("/demandedachat");
 };
 
 const getDemandesByUser = () => {
-    return http.get("/demande/user");
+    return http.get("/demandedachat/user");
 }
 
 const getDemandesById = id => {
-    return http.get(`/demande/${id}`);
+    return http.get(`/demandedachat/${id}`);
 }
 
 const updateDemandes = (id, data) => {
-    return http.put(`/demande/${id}`, data);
+    return http.put(`/demandedachat/${id}`, data);
   };
 
 const deleteDemandes = id => {
-    return http.delete(`/demande/${id}`);
+    return http.delete(`/demandedachat/${id}`);
 }
 
 const createDemande = data => {
-    return http.post("/demande",data);
+    return http.post("/demandedachat",data);
 }
 
 const modifStatus = (data,id) =>{
     
-    return http.put(`/demande/${id}`,data);
+    return http.put(`/demandedachat/${id}`,data);
 }
   
 

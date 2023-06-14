@@ -98,7 +98,7 @@ onClick={() =>{navigate(`/gestionnaire/formfournisseur/${params.id}`)}}
     <Box display="flex" justifyContent="space-between" alignItems="center">
 
 
-<Header title="List des Fournisseurs" subtitle="Bienvenue a ton liste des Fournisseurs" />
+<Header title="Providers List " subtitle="" />
 </Box>
 <Box
 m="8px 0 0 0"

@@ -45,18 +45,7 @@ const Dashboard = () => {
         <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
 
         <Box>
-          <Button
-            sx={{
-              backgroundColor: colors.blueAccent[700],
-              color: colors.grey[100],
-              fontSize: "14px",
-              fontWeight: "bold",
-              padding: "10px 20px",
-            }}
-          >
-            <DownloadOutlinedIcon sx={{ mr: "10px" }} />
-            Download Reports
-          </Button>
+       
         </Box>
       </Box>
 
@@ -72,7 +61,7 @@ const Dashboard = () => {
           >
             {localStorage.getItem("role")=="admin" && <StatBox
               title="4"
-              subtitle="Nombre Technicien"
+              subtitle="N° of Technicians"
               progress="0.75"
               increase="+14%"
               icon={
@@ -93,7 +82,7 @@ const Dashboard = () => {
           >
             <StatBox
               title="5"
-              subtitle="Nombre de Superviseur"
+              subtitle="N° of Supervisors"
               progress="0.50"
               increase="+21%"
               icon={
@@ -114,7 +103,7 @@ const Dashboard = () => {
           >
             <StatBox
               title="11"
-              subtitle="Nombre de clients"
+              subtitle="N° of Clients"
               progress="0.30"
               increase="+5%"
               icon={
@@ -135,7 +124,7 @@ const Dashboard = () => {
           >
             <StatBox
               title="52"
-              subtitle="Projets finis ce mois"
+              subtitle="Finished Projects / Month"
               progress="0.80"
               increase="+43%"
               icon={

@@ -1,7 +1,8 @@
 // docs https://github.com/azouaoui-med/react-pro-sidebar
+import "./sidebar.css"
 import { useState } from "react";
 import { Menu, Sidebar, MenuItem } from "react-pro-sidebar";
-import { useProSidebar,SubMenu  } from "react-pro-sidebar";
+import { useProSidebar, SubMenu } from "react-pro-sidebar";
 import { useSidebarContext } from "./sidebarContext";
 import { Link } from "react-router-dom";
 import { tokens } from "../../../theme";
@@ -19,6 +20,7 @@ import EngineeringIcon from '@mui/icons-material/Engineering';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import Inventory2Icon from '@mui/icons-material/Inventory2';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
+import PlaylistAddCheckCircleIcon from '@mui/icons-material/PlaylistAddCheckCircle';
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -38,7 +40,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
 
 const MyProSidebar = () => {
   const theme = useTheme();
-  
+
   const colors = tokens(theme.palette.mode);
   const [selected, setSelected] = useState("Dashboard");
   const { sidebarRTL, setSidebarRTL, sidebarImage } = useSidebarContext();
@@ -60,7 +62,7 @@ const MyProSidebar = () => {
         },
         "& .menu-item": {
           // padding: "5px 35px 5px 20px !important",
-          
+
           backgroundColor: "transparent !important",
         },
         "& .menu-anchor": {
@@ -74,7 +76,7 @@ const MyProSidebar = () => {
         "& .menu-anchor:hover": {
           color: `${colors.blueAccent[400]} !important`,
           backgroundColor: `${colors.primary[400]} !important`,
-          
+
         },
         "& .menu-item.active": {
           color: `${colors.greenAccent[500]} !important`,
@@ -91,17 +93,8 @@ const MyProSidebar = () => {
         <Menu iconshape="square">
           <MenuItem
             icon={
-              collapsed ? (
-                <MenuOutlinedIcon onClick={() => collapseSidebar()} />
-              ) : sidebarRTL ? (
-                <SwitchLeftOutlinedIcon
-                  onClick={() => setSidebarRTL(!sidebarRTL)}
-                />
-              ) : (
-                <SwitchRightOutlinedIcon
-                  onClick={() => setSidebarRTL(!sidebarRTL)}
-                />
-              )
+              <MenuOutlinedIcon onClick={() => collapseSidebar()} />
+
             }
             style={{
               margin: "10px 0 20px 0",
@@ -116,8 +109,8 @@ const MyProSidebar = () => {
                 ml="15px"
               >
                 <Typography variant="h3" color={colors.grey[100]}>
-
-{localStorage.getItem('role')}                </Typography>
+                  {localStorage.getItem('role')}
+                </Typography>
                 <IconButton
                   onClick={
                     broken ? () => toggleSidebar() : () => collapseSidebar()
@@ -140,14 +133,7 @@ const MyProSidebar = () => {
                   },
                 }}
               >
-                <img
-                  className="avater-image"
-                  alt="profile user"
-                  width="100px"
-                  height="100px"
-                  src={`${process.env.REACT_APP_BASE_URL}/api/userImages/${localStorage.getItem('image')}`}
-                  style={{ cursor: "pointer", borderRadius: "50%" }}
-                />
+
               </Box>
               <Box textAlign="center">
                 <Typography
@@ -156,114 +142,124 @@ const MyProSidebar = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-{`${localStorage.getItem('first_name')} ${localStorage.getItem('last_name')}`}                   </Typography>
+                 <Link className="no-decoration" to={"/admin"}>{`${localStorage.getItem('first_name')} ${localStorage.getItem('last_name')}`}</Link> 
+                </Typography>
               </Box>
             </Box>
           )}
-           <Box paddingLeft={collapsed ? undefined : "10%"}>
-           {localStorage.getItem("role") == "admin" && <Item
+          <Box paddingLeft={collapsed ? undefined : "10%"}>
+            {localStorage.getItem("role") == "admin" && <Item
               title="Dashboard"
-              to="/admin/"
+              to="/admin/dashboard"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-            /> }
-                        <Typography
+            />}
+            <Typography
               variant="h6"
               color={colors.grey[300]}
               sx={{ m: "15px 20px 5px 20px" }}
             >
             </Typography>
-            {localStorage.getItem("role") == "admin" && <SubMenu  icon={<EngineeringIcon />}  label="Fournisseur">
-            <Item
-              title="Ajouter fournisseur"
-              to="/admin/formfournisseur"
-              icon={<AddCircleIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+
+
+            <SubMenu icon={<InsertDriveFileIcon />} label="Forms">
               <Item
-              title="List Fournisseur"
-              to="/admin/listfourniseur"
-              icon={<FormatListBulletedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            </SubMenu>}
-            <SubMenu  icon={<Inventory2Icon />}  label="Product">
-            {localStorage.getItem("role") == "admin" &&<Item
-              title="Ajouter Product"
-              to="/admin/formproduit"
-              icon={<AddCircleIcon />}
+                title="Add Form"
+                to="/admin/formformulaire"
+                icon={<AddCircleIcon />}
+                selected={selected}
+                setSelected={setSelected}
+              />
+              <Item
+                title="List Forms"
+                to="/admin/listformulaire"
+                icon={<FormatListBulletedIcon />}
+                selected={selected}
+                setSelected={setSelected}
+              />
+            </SubMenu>
+            <SubMenu icon={<FolderSharedIcon />} label="Projects">
+              <Item
+                title="Add Project"
+                to="/admin/formprojet"
+                icon={<AddCircleIcon />}
+                selected={selected}
+                setSelected={setSelected}
+              />
+              <Item
+                title="List Projects"
+                to="/admin/listprojet"
+                icon={<FormatListBulletedIcon />}
+                selected={selected}
+                setSelected={setSelected}
+              />
+              <Item
+                title="Tasks"
+                to="/admin/tache"
+                icon={<AddTaskIcon />}
+                selected={selected}
+                setSelected={setSelected}
+              />
+            </SubMenu>
+
+            {localStorage.getItem("role") == "admin" && <Item
+              title="Demande D'achat"
+              to="/admin/demande"
+              icon={<PlaylistAddCheckCircleIcon />}
               selected={selected}
               setSelected={setSelected}
             />}
+
+            {localStorage.getItem("role") == "admin" && <SubMenu icon={<EngineeringIcon />} label="Providers">
               <Item
-              title="List Product"
-              to="/admin/listproduit"
-              icon={<FormatListBulletedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+                title="Add Provider"
+                to="/admin/formfournisseur"
+                icon={<AddCircleIcon />}
+                selected={selected}
+                setSelected={setSelected}
+              />
+              <Item
+                title="List Providers"
+                to="/admin/listfourniseur"
+                icon={<FormatListBulletedIcon />}
+                selected={selected}
+                setSelected={setSelected}
+              />
+            </SubMenu>}
+            <SubMenu icon={<Inventory2Icon />} label="Products">
+              {localStorage.getItem("role") == "admin" && <Item
+                title="Add Product"
+                to="/admin/formproduit"
+                icon={<AddCircleIcon />}
+                selected={selected}
+                setSelected={setSelected}
+              />}
+              <Item
+                title="List Products"
+                to="/admin/listproduit"
+                icon={<FormatListBulletedIcon />}
+                selected={selected}
+                setSelected={setSelected}
+              />
             </SubMenu>
 
-            {localStorage.getItem("role") == "admin" && <SubMenu  icon={<ManageAccountsIcon />}  label="Gestion des comptes">
-            <Item
-              title="Ajouter Users"
-              to="/admin/formuser"
-              icon={<AddCircleIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+            {localStorage.getItem("role") == "admin" && <SubMenu icon={<ManageAccountsIcon />} label="Accounts Management">
               <Item
-              title="List Users"
-              to="/admin/listuser"
-              icon={<FormatListBulletedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+                title="Add User"
+                to="/admin/formuser"
+                icon={<AddCircleIcon />}
+                selected={selected}
+                setSelected={setSelected}
+              />
+              <Item
+                title="List Users"
+                to="/admin/listuser"
+                icon={<FormatListBulletedIcon />}
+                selected={selected}
+                setSelected={setSelected}
+              />
             </SubMenu>}
-             
-            <SubMenu  icon={<InsertDriveFileIcon />}  label="Formulaire">
-            <Item
-              title="Ajouter formulaire"
-              to="/admin/formformulaire"
-              icon={<AddCircleIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-              <Item
-              title="List formulaire"
-              to="/admin/listformulaire"
-              icon={<FormatListBulletedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            </SubMenu>
-            <SubMenu  icon={<FolderSharedIcon />}  label="Projet">
-            <Item
-              title="Ajouter Projet"
-              to="/admin/formprojet"
-              icon={<AddCircleIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-              <Item
-              title="List Projet"
-              to="/admin/listprojet"
-              icon={<FormatListBulletedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Taches"
-              to="/admin/tache"
-              icon={<AddTaskIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            </SubMenu>
-             
 
           </Box>
         </Menu>

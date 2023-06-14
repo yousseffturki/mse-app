@@ -8,7 +8,7 @@ import Swal from 'sweetalert2'
 import { useDispatch,useSelector } from 'react-redux';
 import {fetchproduit,deleteproduit} from '../../redux/produitSlice'
 import Header from "../../components/Header";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 function ListProduit() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -86,10 +86,10 @@ onClick={() =>{navigate(`/gestionnaire/formproduit/${params.id}`)}}
         );
       }
     },
-    { headerName: 'Name produit', field: 'nom_produit',felx:1,minWidth:"150" },
-    { headerName: 'Quantite', field: 'quantite',felx:1,minWidth:"200" },
-    { headerName: 'Prix', field: 'prix',felx:1,minWidth:"200" },
-    { headerName: 'Nom fournisseur',  renderCell: (params) => {
+    { headerName: 'Name Product', field: 'nom_produit',felx:1,minWidth:"150" },
+    { headerName: 'Quantity', field: 'quantite',felx:1,minWidth:"200" },
+    { headerName: 'Price', field: 'prix',felx:1,minWidth:"200" },
+    { headerName: 'Provider\' Name',  renderCell: (params) => {
       if(params.row.id_fournisseur==null){
         return (
           <>
@@ -125,7 +125,8 @@ onClick={() =>{navigate(`/gestionnaire/formproduit/${params.id}`)}}
     <Box display="flex" justifyContent="space-between" alignItems="center">
 
 
-<Header title="List des Produits" subtitle="Bienvenue a ton liste des Produits" />
+<Header title="List des Produits" subtitle="Create a new product" />
+<Link to={"/admin/da"}><button>Demande d'achat</button></Link>
 </Box>
 <Box
 m="8px 0 0 0"

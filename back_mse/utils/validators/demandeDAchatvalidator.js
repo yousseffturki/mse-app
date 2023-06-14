@@ -23,18 +23,6 @@ exports.createdemandedachatValidator = [
     .withMessage("description required")
     .isString()
     .withMessage("description must be String"),
-  check("id_produit")
-    .isMongoId()
-    .withMessage("Invalid projet id ")
-    .custom((id_produit) =>
-      produitModel.findById(id_produit).then((produit) => {
-        if (!produit) {
-          return Promise.reject(
-            new Error(`No produit for this id: ${produit}`)
-          );
-        }
-      })
-    ),
 
   validatorMiddleware,
 ];

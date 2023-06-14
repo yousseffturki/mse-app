@@ -65,7 +65,7 @@ const FormProjet = () => {
 
   return (
     <Box m="20px">
-      <Header title="CREATE PRODUCT" subtitle="Create a New produit" />
+      <Header title="CREATE PROJECT" subtitle="Create a New project" />
 
       <Formik
         onSubmit={handleFormSubmit}
@@ -94,7 +94,7 @@ const FormProjet = () => {
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Nom projet"
+                label="Project Name"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.nom_projet}

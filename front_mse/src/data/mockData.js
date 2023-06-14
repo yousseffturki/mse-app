@@ -399,14 +399,14 @@ export const mockBarData = [
 
 export const mockPieData = [
   {
-    id: "fini",
-    label: "fini",
+    id: "finished",
+    label: "Finished",
     value: 239,
     color: "hsl(104, 70%, 50%)"
   },
   {
-    id: "encours",
-    label: "projet en cours",
+    id: "ongoing",
+    label: "On-going",
     value: 584,
     color: "hsl(344, 70%, 50%)"
   }

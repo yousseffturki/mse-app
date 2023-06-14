@@ -16,12 +16,6 @@ const demandedachatShema=new mongoose.Schema(
             type:String,
             trim:true,
             require:[false,'title require']
-        },
-       
-        id_produit:{
-            type:mongoose.Schema.ObjectId,
-            ref:'produit',
-            require:[false,'id_produit require']
         }
     },{timestamps:true}
 );

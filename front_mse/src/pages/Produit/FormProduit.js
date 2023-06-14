@@ -34,11 +34,11 @@ dispatch(fetchfournisseur())
       formData.append("image", values.image);
       formData.append("id_fournisseur", values.id_fournisseur);
 
-      formData.append("quantite", values.quantite);
+      formData.append("quantity", values.quantite);
 
-      formData.append("prix", values.prix);
+      formData.append("price", values.prix);
 
-      formData.append("nom_produit", values.nom_produit);
+      formData.append("Product name", values.nom_produit);
 
       // make a POST request to the File Upload API with the FormData object and Rapid API headers
       axios
@@ -169,7 +169,7 @@ dispatch(fetchfournisseur())
                 </Box>
                 <Box display="flex" justifyContent="end" mt="20px">
                   <Button type="submit" color="secondary" variant="contained">
-                    Create New Fournisseur
+                    Create New Product
                   </Button>
                 </Box>
               </form>

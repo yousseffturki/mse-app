@@ -78,7 +78,7 @@ useEffect(()=>{
     {
       field: 'affecter',
       type: 'actions',
-      headerName: 'Affecter',
+      headerName: 'Affect',
       width: 100,
       cellClassName: 'actions',
       getActions: ( params ) => 
@@ -112,7 +112,7 @@ useEffect(()=>{
     <Box display="flex" justifyContent="space-between" alignItems="center">
 
 
-<Header title="List des Projets" subtitle="Bienvenue a ton liste des Projets" />
+<Header title="List des Projets" subtitle="Create a new project" />
 </Box>
 <Box
 m="8px 0 0 0"

@@ -110,7 +110,7 @@ onClick={() =>{navigate(`/gestionnaire/formrapport/${params.id}`)}}
     <Box display="flex" justifyContent="space-between" alignItems="center">
 
 
-<Header title="List des Rapports" subtitle="Bienvenue a ton liste des Rapports" />
+<Header title="FORM'S LIST" subtitle="List of forms" />
 </Box>
 <Box
 m="8px 0 0 0"
